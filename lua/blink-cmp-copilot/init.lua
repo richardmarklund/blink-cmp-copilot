@@ -1,9 +1,9 @@
 ---@module 'blink.cmp'
+local api = require("copilot.api")
 local format = require("blink-cmp-copilot.format")
 local util = require("copilot.util")
-local api = require("copilot.api")
 
---- @class blink-copilot.Source : blink.cmp.Source
+--- @class blink-cmp-copilot.Source : blink.cmp.Source
 --- @field client vim.lsp.Client | nil
 local M = {}
 
