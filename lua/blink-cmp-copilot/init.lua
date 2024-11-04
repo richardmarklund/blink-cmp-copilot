@@ -8,6 +8,7 @@ local util = require("copilot.util")
 local M = {}
 
 local function set_client()
+  require("copilot")
   local clients = vim.lsp.get_clients({
     name = "copilot",
   })
