@@ -45,7 +45,7 @@ function M:get_completions(context, callback)
     })
   end
 
-  api.get_completions_cycling(M.client, util.get_doc_params(), respond_callback)
+  api.get_completions(M.client, util.get_doc_params(), respond_callback)
 end
 
 function M:new()
