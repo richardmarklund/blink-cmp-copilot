@@ -55,14 +55,12 @@ To link blink-cmp with this source, simply go into your configuration file and a
     },
     opts = {
       sources = {
+        default = { "lsp", "path", "snippets", "buffer", "copilot" },
         providers = {
           copilot = {
             name = "copilot",
             module = "blink-cmp-copilot",
           },
-        },
-        completion = {
-          enabled_providers = { "lsp", "path", "snippets", "buffer", "copilot" },
         },
       },
     },
