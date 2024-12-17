@@ -53,7 +53,6 @@ To link blink-cmp with this source, simply go into your configuration file and a
     },
     opts = {
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "copilot" },
         providers = {
           copilot = {
             name = "copilot",
@@ -62,17 +61,41 @@ To link blink-cmp with this source, simply go into your configuration file and a
             async = true,
           },
         },
+        completion = {
+          enabled_providers = { "lsp", "path", "snippets", "buffer", "copilot" },
+        },
       },
     },
   }
 ```
 
+> [!WARNING]
+> If your on the latest nightly release:
+
+```diff
+      sources = {
++       default = { "lsp", "path", "snippets", "buffer", "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-cmp-copilot",
+            score_offset = 100,
+            async = true,
+          },
+        },
+-       completion = {
+-         enabled_providers = { "lsp", "path", "snippets", "buffer", "copilot" },
+-       },
+      },
+```
+
 #### Copilot Kind Icon
 
 If you want to see Copilot icon like this example:
-![kind-example](./.github/assets/kind.png) 
+![kind-example](./.github/assets/kind.png)
 
 You must update your configuration like this:
+
 ```lua
 ...
     opts = {
@@ -131,5 +154,3 @@ You must update your configuration like this:
     },
 ...
 ```
-
-
