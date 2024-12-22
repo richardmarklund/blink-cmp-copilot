@@ -53,6 +53,7 @@ To link blink-cmp with this source, simply go into your configuration file and a
     },
     opts = {
       sources = {
+        default = { "lsp", "path", "snippets", "buffer", "copilot" },
         providers = {
           copilot = {
             name = "copilot",
@@ -60,33 +61,10 @@ To link blink-cmp with this source, simply go into your configuration file and a
             score_offset = 100,
             async = true,
           },
-        },
-        completion = {
-          enabled_providers = { "lsp", "path", "snippets", "buffer", "copilot" },
         },
       },
     },
   }
-```
-
-> [!WARNING]
-> If your on the latest nightly release:
-
-```diff
-      sources = {
-+       default = { "lsp", "path", "snippets", "buffer", "copilot" },
-        providers = {
-          copilot = {
-            name = "copilot",
-            module = "blink-cmp-copilot",
-            score_offset = 100,
-            async = true,
-          },
-        },
--       completion = {
--         enabled_providers = { "lsp", "path", "snippets", "buffer", "copilot" },
--       },
-      },
 ```
 
 #### Copilot Kind Icon
