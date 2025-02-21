@@ -26,13 +26,15 @@ local function split(inputstr, sep)
 end
 
 ---@return blink.cmp.CompletionItem
-M.format_item = function(item, ctx, opts)
+M.format_item = function(item, ctx)
   local splitText = split(item.text)
   item.range["end"].character = #splitText[1]
 
   return {
     label = trim_whitespace(item.text),
     kind = vim.lsp.protocol.CompletionItemKind.Text,
+    kind_name = "Copilot",
+    kind_icon = "",
     textEdit = {
       newText = item.text,
       range = item.range,

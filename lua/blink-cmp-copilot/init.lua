@@ -35,7 +35,7 @@ function M:get_completions(context, callback)
     end
 
     local items = vim.tbl_map(function(item)
-      return format.format_item(item, context, { fix_pairs = true })
+      return format.format_item(item, context)
     end, vim.tbl_values(response.completions))
 
     return callback({
