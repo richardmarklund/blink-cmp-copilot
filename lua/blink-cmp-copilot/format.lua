@@ -28,8 +28,13 @@ M.format_item = function(item, ctx)
   local lines = split(item.text)
   local range = vim.deepcopy(item.range)
 
-  -- Update the range to span all lines of the suggestion
-  range["end"].line = range["start"].line + #lines - 1
+  -- Fallback: if item.range is empty or malformed, use cursor
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  range.start = {
+    line = row - 1,
+    character = col,
+  }
+  range["end"].line = range.start.line + #lines - 1
   range["end"].character = #lines[#lines]
 
   return {
@@ -47,5 +52,6 @@ M.format_item = function(item, ctx)
     },
   }
 end
+
 
 return M
