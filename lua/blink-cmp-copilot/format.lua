@@ -21,6 +21,7 @@ local function split(inputstr, sep)
 end
 
 M.format_item = function(item, ctx)
+  print("COPILOT RAW:", item.text)
   local lines = split(item.text)
   local bufnr = vim.api.nvim_get_current_buf()
   local cursor = vim.api.nvim_win_get_cursor(0) -- {line, col}
