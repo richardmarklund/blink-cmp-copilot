@@ -5,8 +5,6 @@ local trim_whitespace = function(doc)
   return string.gsub(doc, "^%s*(.-)%s*$", "%1")
 end
 
----Get the split string
----Ported from copilot-cmp
 ---@param inputstr string
 ---@param sep? string
 ---@return string[]
@@ -27,21 +25,25 @@ end
 
 ---@return blink.cmp.CompletionItem
 M.format_item = function(item, ctx)
-  local splitText = split(item.text)
-  item.range["end"].character = #splitText[1]
+  local lines = split(item.text)
+  local range = vim.deepcopy(item.range)
+
+  -- Update the range to span all lines of the suggestion
+  range["end"].line = range["start"].line + #lines - 1
+  range["end"].character = #lines[#lines]
 
   return {
-    label = trim_whitespace(item.text),
+    label = trim_whitespace(lines[1]),
     kind = vim.lsp.protocol.CompletionItemKind.Text,
     kind_name = "Copilot",
     kind_icon = "",
     textEdit = {
       newText = item.text,
-      range = item.range,
+      range = range,
     },
     documentation = {
       kind = "markdown",
-      value = string.format("```%s\n%s\n```\n", vim.bo.filetype, trim_whitespace(item.text)),
+      value = string.format("```%s\n%s\n```", vim.bo.filetype, trim_whitespace(item.text)),
     },
   }
 end
